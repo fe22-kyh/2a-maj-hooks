@@ -9,7 +9,7 @@ function App() {
 
   useEffect(() => {
     const getResult = async () => {
-      const data = await fetch(`https://swapi.dev/api/people/?search=${query}`).then(resp => resp.json());
+      const data = await fetch(`https://swapi.dev/api/people/?search=${httpQuery}`).then(resp => resp.json());
 
       if(data.count > 0) {
         setResult(data.results)
