@@ -1,4 +1,4 @@
-# 3e Maj 
+# 3a Maj 
 
 ## Live-kod
 
@@ -6,6 +6,8 @@
 
 ## Material
 - [React hooks](https://react.dev/reference/react)
+- [Optional chaining (variable?.property)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining)
+- [Custom hook with fetch](https://dev.to/keyurparalkar/creating-custom-hook-for-fetching-data-in-react-3mo3)
 
 ## Övningar
 Utöver useEffect, useState, useRoutes, useNavigate och custom hooks så finns det ett par andra användbara (och vanliga) inbyggda hooks i react som är bra att känna till. De vi kommer att fokusera på är useRef, useContext och useReducer.
