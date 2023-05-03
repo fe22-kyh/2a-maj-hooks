@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import CharacterComponent from "./CharacterComponent";
 
 function App() {
   const [query, setQuery] = useState('');
@@ -14,7 +15,6 @@ function App() {
       if(data.count > 0) {
         setResult(data.results)
       }
-      console.log(data);
     };
 
     getResult();
@@ -22,7 +22,27 @@ function App() {
   
   
   // om inget har hänt under det senaste 2 sekunderna, uppdatera värdet på http query
+  useEffect(() => {
+    setResult([]);
+    const queryTimeoutId = setTimeout(() => {
+      setHttpQuery(query);
+    }, 2000);
 
+    return () => { // det som returneras från en useEffect är en destory funktion (anropas innan komponenten renderas om)
+      clearTimeout(queryTimeoutId); //ta bort timeOut när vi renderas om
+    };
+  }, [query]);
+
+
+  console.log(query);
+
+  let characterComponents = <p>Loading...</p>;
+
+  if(result.length > 0) {
+    characterComponents = result.map(character => 
+      <CharacterComponent data={character} key={crypto.randomUUID()} />
+    );
+  }
 
   return (
     <>
@@ -30,7 +50,7 @@ function App() {
       <p>Query: #{randomPrefix}-{query}</p>
       <input type="text" value={query} onChange={event => setQuery(event.target.value)} />
 
-      <p>Character name: {(result.length === 0 && "loading...") || result[0].name}</p>
+      { characterComponents }
     </>
   );
 }
